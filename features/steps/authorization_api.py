@@ -1,14 +1,15 @@
 import behave
 import requests
 
-@given('')
+@given('empty payload')
 def step_impl(context):
-	pass
-	
-@when('send default authorization request')
+    context.payload=('')
+    
+@when ('make GET request')
 def step_impl(context):
-	assert True is not False
-	
-@then('back-end response is ok')
+    context.r=requests.get(context.base_url)
+    assert context.r
+
+@then('the result page will include "200"')
 def step_impl(context):
-	assert context.failed is False
+    assert context.r.status_code==200
