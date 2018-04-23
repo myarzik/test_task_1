@@ -44,7 +44,28 @@ Feature: authorization API tests
 		Given payload contains "timestamp,device_id"
 		When make GET request
 		Then status code will be "200"
-		And result will be "0"		
+		And result will be "0"
+		
+	Scenario: full req incorrect client_id
+		Given payload contains "client_id,timestamp,device_id"
+		And "client_id" are incorrect
+		When make GET request
+		Then status code will be "200"	
+		And result will be "0"
+		
+	Scenario: full req incorrect timestamp
+		Given payload contains "client_id,timestamp,device_id"
+		And "timestamp" are incorrect
+		When make GET request
+		Then status code will be "200"	
+		And result will be "0"
+		
+	Scenario: full req incorrect device_id
+		Given payload contains "client_id,timestamp,device_id"
+		And "device_id" are incorrect
+		When make GET request
+		Then status code will be "200"	
+		And result will be "0"
 		
 	Scenario: full req
 		Given payload contains "client_id,timestamp,device_id"

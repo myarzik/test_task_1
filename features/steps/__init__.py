@@ -10,4 +10,9 @@ def set_base_url(context, base_url):
 def add_path_to_url(context, path):
 	context.base_url += "/" + path
 	print(context.base_url)
+	
+@step ('make GET request')
+def step_impl(context):
+	context.r=requests.get(context.base_url, params=context.payload)
+	assert context.r
 
